@@ -1,0 +1,26 @@
+{
+  "name": "Camp Ramah Creative Assistant",
+  "short_name": "Ramah Assistant",
+  "description": "AI-powered activity assistant for Ramah New England counselors",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f9fafb",
+  "theme_color": "#166534",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "en"
+}
