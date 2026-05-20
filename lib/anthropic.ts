@@ -35,7 +35,11 @@ export async function callClaude({
   system: string;
   userMessage: string;
   maxTokens: number;
-}): Promise<{ text: string; usage: { input_tokens: number; output_tokens: number } }> {
+}): Promise<{
+  text: string;
+  usage: { input_tokens: number; output_tokens: number };
+  stopReason: string | null;
+}> {
   const client = getAnthropicClient();
 
   // Explicitly type as Message (non-streaming) to keep TypeScript happy
@@ -47,10 +51,10 @@ export async function callClaude({
     messages: [{ role: 'user', content: userMessage }],
   });
 
-  const text =
-    message.content[0].type === 'text' ? message.content[0].text : '';
+  const textBlock = message.content.find((b) => b.type === 'text');
+  const text = textBlock?.type === 'text' ? textBlock.text : '';
 
-  return { text, usage: message.usage };
+  return { text, usage: message.usage, stopReason: message.stop_reason ?? null };
 }
 
 export function parseActivityJson<T>(text: string): T {
